@@ -264,4 +264,18 @@
     })
   });
 
+  $("#sendMail").click(()=> {
+    const message = `${$("#message-form").val()} name: ${$("#name-form").val()}`
+    const data = { 
+      email: $("#email-form").val(),
+      message: message,
+      subject: $("#subject-form").val()
+    }
+    console.log(data)
+    axios.post("https://9vazg3hb0f.execute-api.us-east-1.amazonaws.com/production/", data)
+    .then(response => {
+      $(".sent-message").show();
+    })
+    .catch(error => console.log(error));
+  })
 })()
